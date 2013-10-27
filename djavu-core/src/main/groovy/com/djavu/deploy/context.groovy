@@ -1,4 +1,4 @@
-package djavu
+package com.djavu.deploy
 
 import javax.sql.DataSource
 
@@ -33,7 +33,7 @@ class StaticConfig extends WebMvcConfigurerAdapter {
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories('djavu')
+@EnableJpaRepositories('com.djavu.socialevents')
 class RepositoryConfig {
 
     @Bean
@@ -45,7 +45,7 @@ class RepositoryConfig {
 
         LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean()
         factory.setJpaVendorAdapter vendorAdapter
-        factory.setPackagesToScan 'djavu'
+        factory.setPackagesToScan 'com.djavu.socialevents'
         factory.setDataSource dataSource()
 
         return factory
@@ -68,7 +68,7 @@ class RepositoryConfig {
 }
 
 @Configuration
-@ComponentScan(basePackages = 'djavu')
+@ComponentScan(basePackages = 'com.djavu.socialevents')
 @ImportResource('classpath:springmvc-resteasy.xml')
 class ApiConfig {
 }

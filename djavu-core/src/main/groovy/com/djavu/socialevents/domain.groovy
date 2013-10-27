@@ -1,4 +1,4 @@
-package djavu
+package com.djavu.socialevents
 
 import static javax.persistence.TemporalType.TIMESTAMP
 import static javax.xml.bind.annotation.XmlAccessType.NONE
@@ -14,7 +14,7 @@ import groovy.transform.*
 @XmlAccessorType(NONE)
 @ToString
 @EqualsAndHashCode
-class Event {
+class SocialEvent {
 
 	@Id
 	@XmlElement

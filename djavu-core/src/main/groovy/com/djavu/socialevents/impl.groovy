@@ -1,4 +1,4 @@
-package djavu
+package com.djavu.socialevents
 
 import javax.inject.*
 import javax.ws.rs.core.*
@@ -7,12 +7,12 @@ import javax.enterprise.inject.*
 import javax.enterprise.context.*
 
 @Named
-class EventsResourcesImpl implements EventsResources {
+class SocialEventResourcesImpl implements SocialEventResources {
 
     @Inject
-    EventRepository repo
+    SocialEventRepository repo
 
-    Event[] get() {
+    SocialEvent[] get() {
         repo.findAll()
     }
 }

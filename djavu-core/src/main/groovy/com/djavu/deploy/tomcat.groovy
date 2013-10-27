@@ -1,4 +1,4 @@
-package djavu
+package com.djavu.deploy
 
 import org.apache.catalina.startup.Tomcat
 
@@ -11,7 +11,7 @@ class Main {
 
 	static void main(String[] args) {
 
-		log.info "Starting Judi..."
+		log.info "Starting djavu-core..."
 
 		def main = new Main('production')
 		main.tomcat.server.await()
@@ -27,7 +27,7 @@ class Main {
 
 	Main(String profiles) {
 
-		def context = tomcat.addWebapp '/', new File('build/libs/core.war').absolutePath
+		def context = tomcat.addWebapp '/', new File('build/libs/djavu-core.war').absolutePath
 		context.addParameter 'spring.profiles.default', profiles
 
 		tomcat.port = 5000
