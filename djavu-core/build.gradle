@@ -1,10 +1,10 @@
+// https://github.com/bmuschko/gradle-tomcat-plugin
+
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'eclipse'
-apply plugin: 'application'
 apply plugin: 'war'
-
-mainClassName = 'com.djavu.deploy.Main'
+apply plugin: 'tomcat'
 
 repositories {
 	mavenCentral()
@@ -35,8 +35,24 @@ dependencies {
 	compile 'com.h2database:h2:1.3.171'
 	// validator libs
 	compile 'org.hibernate:hibernate-validator:5.0.+'
+	// tomcat plugin
+    def tomcatVersion = '7.0.11'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+           "org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
+    tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
+        exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
+    }
 }
 
-run {
-	dependsOn war
+tomcatRunWar {
+    httpPort = 5000
+}
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'org.gradle.api.plugins:gradle-tomcat-plugin:1.0'
+    }
 }
