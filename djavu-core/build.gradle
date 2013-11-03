@@ -5,6 +5,7 @@ apply plugin: 'groovy'
 apply plugin: 'eclipse'
 apply plugin: 'war'
 apply plugin: 'tomcat'
+apply plugin: 'application'
 
 repositories {
 	mavenCentral()
@@ -42,6 +43,12 @@ dependencies {
     tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {
         exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
     }
+}
+
+mainClassName = 'com.djavu.deploy.Main'
+
+run {
+	dependsOn war
 }
 
 tomcatRunWar {
