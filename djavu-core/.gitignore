@@ -4,3 +4,4 @@ build
 .classpath
 .settings
 tomcat.8080
+bin
